@@ -1,11 +1,11 @@
 ---
-- name: Copy keepalived.conf
+- name: Ensure keepalived.conf is installed
   template:
     src: keepalived.conf
     dest: /etc/keepalived/keepalived.conf
   notify: Restart keepalived
 
-- name: Ensure keealived is started
+- name: Ensure keepalived is started
   service:
     name: keepalived
     state: started
