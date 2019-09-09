@@ -6,7 +6,7 @@ This role configures keepalived without arm twisting. Write the configuration th
 Requirements
 ------------
 
-This role doesn't install nor compile from source keepalived. It should be already present in some way (ie: provisionning tool like Packer).
+Another role or deployment method must be devised to use notification scripts such as `notify_backup`, `notify_fault` and `notify_master`.
 
 Role Variables
 --------------
@@ -60,12 +60,11 @@ This variable contains a list of vrrp_instance values structured like this:
 Dependencies
 ------------
 
-None.
+The `keepalived` package should be installed first using a tool such as Packer.
+However if it is not part of your toolchain the variable `keepalived_install` can be set to `True` to provoke an installation.
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ```
     - hosts: wwwmaster

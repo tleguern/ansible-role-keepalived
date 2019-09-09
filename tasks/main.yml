@@ -3,6 +3,7 @@
   package:
     name: keepalived
     state: present
+  when: keepalived_install == True
 
 - name: Ensure keepalived.conf is installed
   template:
