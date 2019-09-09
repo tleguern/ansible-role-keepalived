@@ -1,4 +1,9 @@
 ---
+- name: Ensure keepalived is installed
+  package:
+    name: keepalived
+    state: present
+
 - name: Ensure keepalived.conf is installed
   template:
     src: keepalived.conf
