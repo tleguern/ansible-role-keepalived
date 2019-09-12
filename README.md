@@ -22,7 +22,9 @@ Role Variables
 * `notification_email_from`: the from: address ;
 * `smtp_server`: remote SMTP server to use ;
 * `no_email_faults`: do not send email, value should be true or false ;
-* `default_interface`: set the default interface, the default value is eth0.
+* `default_interface`: set the default interface, the default value is eth0 ;
+* `script_user`: specify the user used to run scripts, the default is keepalived_script ;
+* `enable_script_security`: prevent keepalived from running insecure scripts, the default value is True.
 
 ### keepalived_vrrp_scripts
 
