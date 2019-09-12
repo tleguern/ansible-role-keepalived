@@ -1,7 +1,7 @@
 ---
-- name: Ensure keepalived is installed
+- name: Ensure keepalived and its dependency are installed
   package:
-    name: keepalived
+    name: [ 'keepalived', 'libipset3' ]
     state: present
   when: keepalived_install == True
 
