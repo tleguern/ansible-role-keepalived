@@ -1,9 +1,15 @@
 ---
+- include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
+    - '{{ ansible_distribution }}.yml'
+    - '{{ ansible_os_family }}.yml'
+  when: keepalived_install == True
+
 - name: Ensure keepalived and its dependency are installed
   package:
-    name: [ 'keepalived', 'libipset3' ]
+    name: "{{ __keepalived_packages }}"
     state: present
-  when: keepalived_install == True
 
 - name: Ensure keepalived_script user is created
   user:
