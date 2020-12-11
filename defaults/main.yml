@@ -1,2 +1,3 @@
 ---
 keepalived_install: False
+keepalived_packages: "{{ __keepalived_packages }}"

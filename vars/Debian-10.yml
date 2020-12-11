@@ -1,4 +1,4 @@
 ---
 __keepalived_packages:
   - keepalived
-  - libipset3
+  - libipset11
