@@ -1,5 +1,6 @@
 ---
-- include_vars: '{{ item }}'
+- name: Import OS-specific variables
+  include_vars: '{{ item }}'
   with_first_found:
     - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
     - '{{ ansible_distribution }}.yml'
@@ -9,7 +10,7 @@
   package:
     name: "{{ keepalived_packages }}"
     state: present
-  when: keepalived_install == True
+  when: keepalived_install
 
 - name: Ensure keepalived_script user is created
   user:
@@ -21,6 +22,7 @@
   template:
     src: keepalived.conf
     dest: /etc/keepalived/keepalived.conf
+    mode: 0644
   notify: Restart keepalived
 
 - name: Ensure keepalived is started
