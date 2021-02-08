@@ -1,3 +1,6 @@
 ---
 keepalived_install: False
 keepalived_packages: "{{ __keepalived_packages }}"
+vrrp_script.weight_enabled: true
+vrrp_script.fall_enabled: true
+vrrp_script.rise_enabled : true
