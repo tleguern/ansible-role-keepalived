@@ -72,7 +72,7 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
 
 Example Playbook
 ----------------
-
+* exemple 1
 ```
     - hosts: wwwmaster
       vars:
@@ -96,7 +96,7 @@ Example Playbook
       roles:
       - role: ansible-keepalived
 ```
-
+* exemple 2
 ```
     - hosts: wwwmaster
       vars:
@@ -113,7 +113,6 @@ Example Playbook
            unicast_src_ip: "{{ hostvars[wwwmaster].ansible_default_ipv4.address }}"
            unicast_peers:
              - "{{ hostvars[wwwbackup].ansible_default_ipv4.address }}"
-           interface: eth0
            track_interface:
              - eth0
            virtual_ipaddresses:
