@@ -48,6 +48,11 @@ This variable contains a list of vrrp_instance values structured like this:
 - `advert_int`: advertisement interval in seconds, the default value is 1 ;
 - `priority`: specify the priority of this instance in the VRRP router, mandatory ;
 - `state`: specify the instance state at startup, either MASTER or BACKUP, mandatory ;
+- `nopreempt`: alows the lower priority machine to maintain the master role even when a higher priority machine comes back, optional;
+- `garp_master_refresh`: number of gratuitous ARP messages to send at a time while MASTER, optional;
+- `garp_master_delay`: number of gratuitous ARP messages to send at a time after transition to MASTER the default keepalived value is 5, optional;
+- `track_interface`: Synchronization group tracking interface, script, file & bfd will update the status/priority of all VRRP instances which are members, of the sync group. 'weight 0 reverse' will cause the vrrp instance to be down when the interface is up, and vice versa (see exmple 2 for more information), optional;
+- `unicast_src_ip`: IP address this instance should listen on, optionnal ;
 - `unicast_src_ip`: IP address this instance should listen on, optionnal ;
 - `unicast_peer`: list of IP addresses allowed to communicate with this instance, optionnal ;
 - `interface`: interface to use, mandatory ;
@@ -87,6 +92,32 @@ Example Playbook
            interface: eth0
            virtual_ipaddresses:
              - "{{ vip_front }}"
+           track_script: haproxy
+      roles:
+      - role: ansible-keepalived
+```
+
+```
+    - hosts: wwwmaster
+      vars:
+      - keepalived_global_defs:
+        router_id: 1
+      - keepalived_vrrp_scripts:
+        - name: haproxy
+          script: killall -0 haproxy
+      - keepalived_vrrp_instances:
+        - name: HAPROXY
+           virtual_router_id: 42
+           priority: 100
+           state: MASTER
+           unicast_src_ip: "{{ hostvars[wwwmaster].ansible_default_ipv4.address }}"
+           unicast_peers:
+             - "{{ hostvars[wwwbackup].ansible_default_ipv4.address }}"
+           interface: eth0
+           track_interface:
+             - eth0
+           virtual_ipaddresses:
+             - "{{ vip_front + " dev" " eth0" }}"
            track_script: haproxy
       roles:
       - role: ansible-keepalived
