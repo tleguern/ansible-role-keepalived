@@ -72,7 +72,7 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
 
 Example Playbook
 ----------------
-* exemple 1
+
 ```
     - hosts: wwwmaster
       vars:
@@ -92,31 +92,6 @@ Example Playbook
            interface: eth0
            virtual_ipaddresses:
              - "{{ vip_front }}"
-           track_script: haproxy
-      roles:
-      - role: ansible-keepalived
-```
-* exemple 2
-```
-    - hosts: wwwmaster
-      vars:
-      - keepalived_global_defs:
-        router_id: 1
-      - keepalived_vrrp_scripts:
-        - name: haproxy
-          script: killall -0 haproxy
-      - keepalived_vrrp_instances:
-        - name: HAPROXY
-           virtual_router_id: 42
-           priority: 100
-           state: MASTER
-           unicast_src_ip: "{{ hostvars[wwwmaster].ansible_default_ipv4.address }}"
-           unicast_peers:
-             - "{{ hostvars[wwwbackup].ansible_default_ipv4.address }}"
-           track_interface:
-             - eth0
-           virtual_ipaddresses:
-             - "{{ vip_front + ' dev' ' eth0' }}"
            track_script: haproxy
       roles:
       - role: ansible-keepalived
