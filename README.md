@@ -116,7 +116,7 @@ Example Playbook
            track_interface:
              - eth0
            virtual_ipaddresses:
-             - "{{ vip_front + " dev" " eth0" }}"
+             - "{{ vip_front + ' dev' ' eth0' }}"
            track_script: haproxy
       roles:
       - role: ansible-keepalived
