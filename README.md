@@ -1,28 +1,23 @@
-ansible-keepalived
-==================
+# ansible-keepalived
 
 This role configures keepalived without arm twisting. Write the configuration the way you want.
 
-Requirements
-------------
+## Requirements
 
 Another role or deployment method must be devised to use notification scripts such as `notify_backup`, `notify_fault` and `notify_master`.
 
-Role Variables
---------------
+## Role Variables
 
 * `keepalived_global_defs`: configure the `global_defs` block ;
 * `keepalived_vrrp_scripts`: configure one or more `vrrp_script` ;
 * `keepalived_vrrp_instances`: configure one or more `vrrp_instance`.
 
-Dependencies
-------------
+## Dependencies
 
 The `keepalived` package should be installed first using a tool such as Packer.
 However if it is not part of your toolchain the variable `keepalived_install` can be set to `True` to provoke an installation.
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```
     - hosts: wwwmaster
@@ -53,12 +48,10 @@ Example Playbook
       - role: ansible-keepalived
 ```
 
-License
--------
+## License
 
 ISC
 
-Author Information
-------------------
+## Author Information
 
 This role was created in 2018 by Tristan Le Guern on the behalf of Deveryware.
