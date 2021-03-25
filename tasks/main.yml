@@ -6,7 +6,7 @@
     - '{{ ansible_distribution }}.yml'
     - '{{ ansible_os_family }}.yml'
 
-- name: Ensure keepalived and its dependency are installed
+- name: Ensure keepalived and its dependencies are installed
   package:
     name: "{{ keepalived_packages }}"
     state: present
