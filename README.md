@@ -26,7 +26,7 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
           router_id 1
       - keepalived_vrrp_scripts:
         - name: haproxy
-	  content: |
+    content: |
             script "killall -0 haproxy"
       - keepalived_vrrp_instances:
         - name: HAPROXY
@@ -36,14 +36,14 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
            unicast_src_ip "{{ master_ip }}"
            unicast_peer {
              "{{ backup_ip }}"
-	   }
+     }
            interface eth0
            virtual_ipaddress {
              "{{ vip_front }}"
-	   }
+     }
            track_script {
              haproxy
-	   }
+     }
       roles:
       - role: ansible-keepalived
 ```
