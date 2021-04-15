@@ -1,6 +1,10 @@
 # ansible-keepalived
 
+[![builds.sr.ht status](https://builds.sr.ht/~tleguern/ansible-role-keepalived.svg)](https://builds.sr.ht/~tleguern/ansible-role-keepalived?)
+
 This role configures keepalived without arm twisting. Write the configuration the way you want.
+
+Automatic testing is provided using molecule's delegated driver and <https://builds.sr.ht>.
 
 ## Requirements
 
@@ -19,38 +23,42 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
 
 ## Example Playbook
 
-```
-    - hosts: wwwmaster
-      vars:
-      - keepalived_global_defs: |
-          router_id 1
-      - keepalived_vrrp_scripts:
+```yaml
+- hosts: wwwmaster
+  vars:
+    - keepalived_global_defs: |
+        router_id 1
+    - keepalived_vrrp_scripts:
         - name: haproxy
-    content: |
+          content: |
             script "killall -0 haproxy"
-      - keepalived_vrrp_instances:
+    - keepalived_vrrp_instances:
         - name: HAPROXY
           content: |
-           virtual_router_id 42
-           state MASTER
-           unicast_src_ip "{{ master_ip }}"
-           unicast_peer {
-             "{{ backup_ip }}"
-     }
-           interface eth0
-           virtual_ipaddress {
-             "{{ vip_front }}"
-     }
-           track_script {
-             haproxy
-     }
-      roles:
-      - role: ansible-keepalived
+            virtual_router_id 42
+            state MASTER
+            unicast_src_ip "{{ master_ip }}"
+            unicast_peer {
+              "{{ backup_ip }}"
+            }
+            interface eth0
+            virtual_ipaddress {
+              "{{ vip_front }}"
+            }
+            track_script {
+              haproxy
+            }
+  roles:
+    - role: ansible-keepalived
 ```
 
 ## License
 
 ISC
+
+## Contributing
+
+Either send [send GitHub pull requests](https://github.com/tleguern/ansible-role-keepalived) or [send patches on SourceHut](https://lists.sr.ht/~tleguern/misc).
 
 ## Author Information
 
