@@ -12,12 +12,6 @@
     state: present
   when: keepalived_install
 
-- name: Ensure keepalived_script user is created
-  user:
-    name: keepalived_script
-    shell: /bin/nologin
-    create_home: no
-
 - name: Ensure keepalived.conf is installed
   template:
     src: keepalived.conf
