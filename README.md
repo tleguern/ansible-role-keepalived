@@ -17,6 +17,12 @@ Another role or deployment method must be devised to use notification scripts su
 * `keepalived_vrrp_instances`: configure one or more `vrrp_instance`.
 * `keepalived_flags`: flags to pass to the keepalived daemon (set `--log-detail --log-facility=7` by default)
 
+## Default variables
+
+* `keepalived_install`: Install keepalived package (`no` by default)
+* `keepalived_packages`: list of packages to install keeplived (depending on distribution version)
+* `keepalived_auto_restart`: automatically restart keepalived when conf is changed (`yes` by default)
+
 ## Dependencies
 
 The `keepalived` package should be installed first using a tool such as Packer.

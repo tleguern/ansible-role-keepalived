@@ -3,3 +3,4 @@
   service:
     name: keepalived
     state: restarted
+  when: keepalived_auto_restart
