@@ -12,6 +12,13 @@
     state: present
   when: keepalived_install
 
+- name: Ensure default keepalived conf is installed
+  template:
+    src: keepalived.default
+    dest: /etc/default/keepalived
+    mode: 0644
+  notify: Restart keepalived
+
 - name: Ensure keepalived.conf is installed.
   template:
     src: keepalived.conf
