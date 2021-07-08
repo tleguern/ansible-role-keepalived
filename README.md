@@ -15,7 +15,7 @@ Another role or deployment method must be devised to use notification scripts su
 * `keepalived_global_defs`: configure the `global_defs` block ;
 * `keepalived_vrrp_scripts`: configure one or more `vrrp_script` ;
 * `keepalived_vrrp_instances`: configure one or more `vrrp_instance`.
-* `keepalived_default_args`: configure defaults arguments for keepalived daemon (set "--log-detail --log-facility=7" by default)
+* `keepalived_flags`: flags to pass to the keepalived daemon (set `--log-detail --log-facility=7` by default)
 
 ## Dependencies
 
