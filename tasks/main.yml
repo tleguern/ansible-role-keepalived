@@ -12,7 +12,7 @@
     state: present
   when: keepalived_install
 
-- name: Ensure default keepalived conf is installed
+- name: Ensure keepalived command line arguments are defined.
   template:
     src: keepalived.default
     dest: /etc/default/keepalived
