@@ -1,4 +1,4 @@
 ---
 keepalived_install: no
 keepalived_packages: "{{ __keepalived_packages }}"
-keepalived_default_args: "--log-detail --log-facility=7"
+keepalived_flags: "--log-detail --log-facility=7"
