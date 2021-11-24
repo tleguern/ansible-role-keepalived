@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  vars:
+    keepalived_install: true
+  tasks:
+    - name: "Include ansible-role-keepalived"
+      include_role:
+        name: "ansible-role-keepalived"
