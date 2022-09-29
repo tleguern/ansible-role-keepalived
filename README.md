@@ -16,6 +16,7 @@ Another role or deployment method must be devised to use notification scripts su
 * `keepalived_vrrp_scripts`: configure one or more `vrrp_script` ;
 * `keepalived_vrrp_instances`: configure one or more `vrrp_instance`.
 * `keepalived_virtual_servers`: configure one or more `virtual_servers`.
+* `keepalived_vrrp_sync_group`: configure one or more `vrrp_sync_group`.
 * `keepalived_flags`: flags to pass to the keepalived daemon (set `--log-detail --log-facility=7` by default)
 
 ## Dependencies
@@ -50,6 +51,11 @@ However if it is not part of your toolchain the variable `keepalived_install` ca
             track_script {
               haproxy
             }
+    - keepalived_vrrp_sync_group:
+        - name: VRRP-GRP-01
+          vrrp_group_instances_member:
+            - HAPROXY
+            - WEB
   roles:
     - role: ansible-keepalived
 ```
